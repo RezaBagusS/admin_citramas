@@ -345,7 +345,7 @@ const PopupData = () => {
               regist={register("date")}
             />
             <InputField
-              label="Note"
+              label="Note (Opsional)"
               placeholder={dataPopup.dataNews.note || ""}
               defaultValue={dataPopup.dataNews.note || ""}
               type="text"

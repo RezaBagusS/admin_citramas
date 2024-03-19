@@ -117,9 +117,18 @@ export default function Page({}: PageProps) {
                   colSpan={4}
                   className="py-5 px-3 text-center text-custBlack/70"
                 >
-                  Data Not Found . . .
+                  Loading . . .
                 </td>
               </tr>
+              ) : paginatedData.length === 0 ? (
+                <tr className="bg-slate-100">
+                  <td
+                    colSpan={7}
+                    className="py-5 px-3 text-center text-custBlack/70"
+                  >
+                    No Data Found
+                  </td>
+                </tr>
               ) : paginatedData.map((item, index) => {
                 return (
                   <tr

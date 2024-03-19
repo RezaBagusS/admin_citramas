@@ -302,7 +302,7 @@ const PopUpAdd = () => {
             />
             <InputField label="Date" type="date" regist={register("date")} />
             <InputField
-              label="Note"
+              label="Note (Opsional)"
               placeholder="Give some information"
               type="text"
               regist={register("note")}

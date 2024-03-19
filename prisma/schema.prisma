@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Activity {
+  id           Int            @id @default(autoincrement())
+  name         String
+  createdAt    DateTime       @default(now())
+  ListActivity ListActivity[]
+}
+
+model ListActivity {
+  id           Int            @id @default(autoincrement())
+  id_activity  Int
+  name         String
+  createdAt    DateTime       @default(now())
+  Activity     Activity       @relation(fields: [id_activity], references: [id])
+  storageImage storageImage[]
+
+  @@index([id_activity], map: "ListActivity_id_activity_fkey")
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  createdAt   DateTime @default(now())
+  note        String?
+  path        String
+}
+
+model storageImage {
+  id              Int          @id @default(autoincrement())
+  id_listActivity Int
+  url             String
+  createdAt       DateTime     @default(now())
+  ListActivity    ListActivity @relation(fields: [id_listActivity], references: [id])
+
+  @@index([id_listActivity], map: "storageImage_id_listActivity_fkey")
+}
+
+model UserAdmin {
+  id         Int      @id @default(autoincrement())
+  email      String   @db.Text
+  password   String   @db.Text
+  created_at DateTime @default(now()) @db.Date
+}

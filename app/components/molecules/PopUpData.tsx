@@ -188,18 +188,18 @@ const PopupData = () => {
     const reader = new FileReader();
 
     if (file) {
-      if (
-        !file.type.startsWith("image/png") &&
-        !file.type.startsWith("image/jpeg")
-      ) {
-        alert("Hanya file PNG, JPG atau JPEG yang diizinkan.");
-        return;
-      }
+      // if (
+      //   !file.type.startsWith("image/png") &&
+      //   !file.type.startsWith("image/jpeg")
+      // ) {
+      //   alert("Hanya file PNG, JPG atau JPEG yang diizinkan.");
+      //   return;
+      // }
 
-      if (file.size > 10 * 1024 * 1024) {
-        alert("Ukuran berkas terlalu besar. Maksimum 10MB diizinkan.");
-        return;
-      }
+      // if (file.size > 10 * 1024 * 1024) {
+      //   alert("Ukuran berkas terlalu besar. Maksimum 10MB diizinkan.");
+      //   return;
+      // }
 
       reader.readAsDataURL(file);
       reader.onloadend = () => {

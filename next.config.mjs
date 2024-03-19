@@ -38,6 +38,9 @@ const nextConfig = {
       },
     ],
   },
+  serverActions: {
+    bodySizeLimit: '5mb', // Adjust the limit as needed (in bytes)
+  },
 };
 
 export default nextConfig;

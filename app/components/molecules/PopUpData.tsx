@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import FormImageUpload from "./formImageUpload";
 import FormDropDown from "./formDropdown";
 import { updateNewsData } from "@/app/helpers/newsHelper";
+import { FaSpinner } from "react-icons/fa";
 
 // TYPE: /dashboard, /dashboard/activity-list, /dashboard/news, /dashboard/storage-image
 
@@ -409,6 +410,9 @@ const PopupData = () => {
                 disabled={whileSubmit}
                 className="text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
               >
+                {whileSubmit && (
+                  <FaSpinner className="animate-spin size-6" />
+                )}
                 confirm
               </button>
             </div>

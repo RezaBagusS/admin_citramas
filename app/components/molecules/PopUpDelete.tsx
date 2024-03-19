@@ -8,6 +8,7 @@ import { setPopupDelete } from "@/app/redux/slices/reduxPopupDeleteSlices";
 import { usePathname } from "next/navigation";
 import { deleteDataImage } from "@/app/helpers/imageHelper";
 import { deleteNewsData } from "@/app/helpers/newsHelper";
+import { FaSpinner } from "react-icons/fa";
 
 interface stateProps {
   id: number;
@@ -116,6 +117,9 @@ const PopUpDelete = () => {
                 disabled={whileSubmit}
                 className="text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
               >
+                {whileSubmit && (
+                  <FaSpinner className="animate-spin size-6" />
+                )}
                 confirm
               </button>
             </div>

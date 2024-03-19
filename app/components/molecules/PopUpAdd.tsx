@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import FormImageUpload from "./formImageUpload";
 import imageHelper from "@/app/helpers/imageHelper";
 import { addNewsData } from "@/app/helpers/newsHelper";
+import { FaSpinner } from "react-icons/fa";
 
 interface stateActivity {
   id: number;
@@ -354,6 +355,9 @@ const PopUpAdd = () => {
                 disabled={whileSubmit}
                 className="text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
               >
+                {whileSubmit && (
+                  <FaSpinner className="animate-spin" />
+                )}
                 confirm
               </button>
             </div>

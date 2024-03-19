@@ -353,10 +353,10 @@ const PopUpAdd = () => {
               <button
                 onClick={handleSubmit(handleConfirm)}
                 disabled={whileSubmit}
-                className="text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
+                className="flex items-center text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
               >
                 {whileSubmit && (
-                  <FaSpinner className="animate-spin" />
+                  <FaSpinner className="animate-spin size-3" />
                 )}
                 confirm
               </button>

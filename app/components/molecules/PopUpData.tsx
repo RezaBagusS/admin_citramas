@@ -319,7 +319,7 @@ const PopupData = () => {
                 onChange={handleUpload}
                 type="file"
                 name="file"
-                accept=".png, .jpg, .jpeg"
+                accept="image/png, image/gif, image/jpeg, image/jpg, image/svg+xml, image/webp"
               />
             </div>
           </>

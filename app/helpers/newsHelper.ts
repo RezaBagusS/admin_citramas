@@ -62,10 +62,10 @@ export const addNewsData = async (dataNews: dataNews) => {
 
 export const updateNewsData = async (dataNews: dataNews) => {
 
+    console.log("DATA NEWS : ", dataNews);
+
     const { id, title, description, date, note, path } = dataNews;
-
-    const setFormatDate = new Date(date)
-
+    
     const res = await prisma.news.update({
         where: {
             id: id
@@ -73,9 +73,10 @@ export const updateNewsData = async (dataNews: dataNews) => {
         data: {
             title: title,
             description: description,
-            date: setFormatDate,
+            date: new Date(date),
             note: note,
-            path: path
+            path: path,
+            createdAt: new Date()
         }
     })
 

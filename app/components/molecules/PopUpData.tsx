@@ -89,7 +89,8 @@ const PopupData = () => {
         return await updateDataListActivity(
           dataPopup.id_activityList,
           data.id_activity,
-          data.activityList
+          data.activityList,
+          data.description
         );
       case "/dashboard/storage-image":
         return await updateDataImage(
@@ -113,11 +114,12 @@ const PopupData = () => {
     }
   };
 
-  const handleConfirm = async (data: any) => {
+  const handleConfirm = async (data: any, e: any) => {
     handleWhileSubmit();
 
     console.log("Data : ", data);
-
+    console.log("Date : ", new Date(data.date));
+    
     if (
       data.id_activity == 0 ||
       data.id_activityList == 0 ||
@@ -275,6 +277,13 @@ const PopupData = () => {
               defaultValue={dataPopup.activityList}
               type="text"
               regist={register("activityList")}
+            />
+            <InputField
+              label="Description"
+              placeholder={dataPopup.description}
+              defaultValue={dataPopup.description}
+              type="message"
+              regist={register("description")}
             />
           </>
         );

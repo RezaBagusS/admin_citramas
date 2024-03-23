@@ -33,7 +33,7 @@ export default function Page({}: PageProps) {
   const location = usePathname();
   const select = useSelector((state: any) => state.select.data.select);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 5;
 
   const handleNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const handlePrevPage = () =>
@@ -74,10 +74,8 @@ export default function Page({}: PageProps) {
         }
       );
 
-      if (filtered) {
-        setCurrentPage(1);
-        setFilteredData(filtered);
-      }
+      setCurrentPage(1);
+      setFilteredData(filtered);
 
     };
 
@@ -132,12 +130,12 @@ export default function Page({}: PageProps) {
               ) : paginatedData.map((item, index) => {
                 return (
                   <tr
-                    key={item.id}
+                    key={index}
                     className={`
                     ${index % 2 == 0 ? "bg-slate-100" : "bg-white"}
                   `}
                   >
-                    <td className="py-2 px-3 text-center">{index + 1}</td>
+                    <td className="py-2 px-3 text-center">{(currentPage - 1) * pageSize + index + 1}</td>
                     <td className="py-2 px-3 text-center">
                       {item.name_listActivity}
                     </td>
@@ -168,18 +166,18 @@ export default function Page({}: PageProps) {
           </tbody>
         </table>
         {dataImage.length > pageSize && (
-          <div className="flex justify-end mt-5">
+          <div className="flex justify-center gap-5 mt-5">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+              className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
             >
               Prev
             </button>
             <button
               onClick={handleNextPage}
-              disabled={currentPage * pageSize >= dataImage.length}
-              className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+              disabled={currentPage * pageSize >= filteredData.length}
+              className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
             >
               Next
             </button>

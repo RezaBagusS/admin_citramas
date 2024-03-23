@@ -16,32 +16,35 @@ export const getAllDataListActivity = async () => {
         return {
             id: item.id,
             activity: getNameActivity.filter((res) => res.id == item.id_activity)[0]?.name,
-            name: item.name
+            name: item.name,
+            description: item.description
         }
     })
 
     return data;
 }
 
-export const updateDataListActivity = async (id_activityList: number ,id_activity: number, name_listActivity: string) => {
+export const updateDataListActivity = async (id_activityList: number ,id_activity: number, name_listActivity: string, description: string) => {
     
     const result = await prisma.listActivity.update({
         where: { id: id_activityList },
         data: { 
             id_activity: parseInt(id_activity.toString()),
-            name: name_listActivity 
+            name: name_listActivity,
+            description: description
         },
     });
     
     return result;
 }
 
-export const addDataListActivity = async (id_activity: number, activityList: string) => {
+export const addDataListActivity = async (id_activity: number, activityList: string, description: string) => {
 
     const result = await prisma.listActivity.create({
         data: {
             id_activity: parseInt(id_activity.toString()),
-            name: activityList
+            name: activityList,
+            description: description
         }
     });
 

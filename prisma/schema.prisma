@@ -18,6 +18,7 @@ model ListActivity {
   id           Int            @id @default(autoincrement())
   id_activity  Int
   name         String
+  description  String         @db.Text
   createdAt    DateTime       @default(now())
   Activity     Activity       @relation(fields: [id_activity], references: [id])
   storageImage storageImage[]
@@ -29,8 +30,8 @@ model News {
   id          Int      @id @default(autoincrement())
   title       String
   description String
-  date        DateTime
-  createdAt   DateTime @default(now())
+  date        DateTime @db.Date
+  createdAt   DateTime @default(now()) @db.Date
   note        String?
   path        String
 }

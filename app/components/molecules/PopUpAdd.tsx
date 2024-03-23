@@ -29,6 +29,7 @@ interface stateActivityList {
   id: number;
   activity: string;
   name: string;
+  description: string;
 }
 
 interface dataNews {
@@ -75,7 +76,7 @@ const PopUpAdd = () => {
   const handlePath = async (data: PopupDataProps) => {
     switch (location) {
       case "/dashboard/activity-list":
-        return await addDataListActivity(data.id_activity, data.activityList);
+        return await addDataListActivity(data.id_activity, data.activityList, data.description);
       case "/dashboard/storage-image":
         return await imageHelper(data.id_activityList, dataUrl);
       case "/dashboard/news":
@@ -242,9 +243,12 @@ const PopUpAdd = () => {
               placeholder="Input activity list name"
               regist={register("activityList")}
             />
-            <p className="text-xs text-gray-400">
-              &#42;Note: This activity name will be used for the activity list
-            </p>
+            <InputField
+              label="Description"
+              type="message"
+              placeholder="Input activity list description in here"
+              regist={register("description")}
+            />
           </>
         );
 

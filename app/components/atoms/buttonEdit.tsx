@@ -21,6 +21,7 @@ interface ButtonEditProps {
   activityList?: string;
   activity?: string;
   dataNews?: dataNews;
+  description?: string;
 }
 
 const ButtonEdit = ({
@@ -31,6 +32,7 @@ const ButtonEdit = ({
   activityList,
   url_image,
   dataNews,
+  description,
 }: ButtonEditProps) => {
   const dispatch = useDispatch();
 
@@ -43,6 +45,7 @@ const ButtonEdit = ({
         url_image: url_image,
         activityList: activityList,
         activity: activity,
+        description: description,
         show: true,
         dataNews: dataNews,
       })

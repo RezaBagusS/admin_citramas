@@ -15,6 +15,7 @@ interface ActivityList {
   id: number;
   activity: string;
   name: string;
+  description: string;
 }
 
 interface Activity {
@@ -99,6 +100,7 @@ export default function Page() {
               <th className="py-2 px-3">No</th>
               <th className="py-2 px-3">Activity</th>
               <th className="py-2 px-3">List Activity Name</th>
+              <th className="py-2 px-3">Description</th>
               <th className="py-2 px-3">Action</th>
             </tr>
           </thead>
@@ -106,7 +108,7 @@ export default function Page() {
             {filteredData.length === 0 ? (
               <tr className="bg-slate-100">
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="py-5 px-3 text-center text-custBlack/70 animate-pulse"
                 >
                   Loading . . .
@@ -115,7 +117,7 @@ export default function Page() {
             ) : paginatedData.length === 0 ? (
               <tr className="bg-slate-100">
                 <td
-                  colSpan={7}
+                  colSpan={5}
                   className="py-5 px-3 text-center text-custBlack/70"
                 >
                   No Data Found
@@ -128,6 +130,7 @@ export default function Page() {
                     key={index}
                     className={`
                       ${index % 2 == 0 ? "bg-slate-100" : "bg-white"}
+                      text-sm
                     `}
                   >
                     <td className="py-2 px-3 text-center">{
@@ -135,11 +138,13 @@ export default function Page() {
                     }</td>
                     <td className="py-2 px-3 text-center">{item.activity}</td>
                     <td className="py-2 px-3">{item.name}</td>
+                    <td className="py-2 px-3">{item.description}</td>
                     <td className="py-2 px-3 flex gap-4 h-full justify-center items-center">
                       <ButtonEdit
                         id_activityList={item.id}
                         activity={item.activity}
                         activityList={item.name}
+                        description={item.description}
                       />
                       <ButtonDelete id={item.id} name={item.name} />
                     </td>
@@ -151,18 +156,18 @@ export default function Page() {
         </table>
         {
           filteredData.length > pageSize && (
-            <div className="flex justify-end mt-5">
+            <div className="flex justify-center gap-5 mt-5">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+                className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
               >
                 Prev
               </button>
               <button
                 onClick={handleNextPage}
                 disabled={currentPage * pageSize >= filteredData.length}
-                className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+                className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
               >
                 Next
               </button>

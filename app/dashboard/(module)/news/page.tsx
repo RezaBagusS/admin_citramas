@@ -141,7 +141,7 @@ export default function Page() {
                       ${index % 2 == 0 ? "bg-slate-100" : "bg-white"}
                     `}
                   >
-                    <td className="py-2 px-3 text-center">{index + 1}</td>
+                    <td className="py-2 px-3 text-center">{(currentPage - 1) * pageSize + index + 1}</td>
                     <td className="py-2 px-3 text-center">{item.title}</td>
                     <td className="py-2 px-3">{item.description}</td>
                     <td className="py-2 px-3">
@@ -166,18 +166,18 @@ export default function Page() {
           </tbody>
         </table>
         {filteredData.length > pageSize && (
-          <div className="flex justify-end mt-5">
+          <div className="flex justify-center gap-5 mt-5">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+              className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
             >
               Prev
             </button>
             <button
               onClick={handleNextPage}
               disabled={currentPage * pageSize >= filteredData.length}
-              className="px-3 py-1 bg-white border border-custBlack/70 rounded-md"
+              className="w-[100px] py-1 bg-custPrimary disabled:bg-gray-400 text-white rounded-md"
             >
               Next
             </button>

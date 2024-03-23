@@ -10,6 +10,7 @@ const popupSlice = createSlice({
       id_image: 0,
       url_image: "",
       activityList: "",
+      description: "",
       activity: "",
       dataNews: {
         id: 0,

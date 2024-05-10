@@ -80,7 +80,7 @@ export default function Page({}: PageProps) {
     };
 
     filterData();
-  },[select])
+  },[select, dataImage])
 
   const paginatedData =
     filteredData.length > pageSize

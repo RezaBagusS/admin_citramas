@@ -1,7 +1,7 @@
 'use client'
 
 import { setSelect } from "@/app/redux/slices/reduxSelectSlices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface Activity {
     id: number;
@@ -15,6 +15,7 @@ interface ActivityProps {
 const SelectActivity = ({data}:ActivityProps) => {
 
     const dispatch = useDispatch();
+    const select = useSelector((state: any) => state.select.data.select);
     
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(setSelect({ select: e.target.value }));
@@ -22,7 +23,7 @@ const SelectActivity = ({data}:ActivityProps) => {
 
     return (
         <div className="rounded-full overflow-hidden border">
-            <select onChange={handleChange} className="bg-white w-full h-full py-2 px-3">
+            <select onChange={handleChange} value={select} className="bg-white w-full h-full py-2 px-3">
                 <option value={""}>--Activity--</option>
                 {data.map((activity) => (
                     <option key={activity.id} value={activity.name}>

@@ -96,7 +96,7 @@ const PopUpAdd = () => {
   };
 
   const handleConfirm = async (data: any) => {
-    handleWhileSubmit();
+    // handleWhileSubmit();
 
     console.log("Send Data : ", data);
 
@@ -136,21 +136,11 @@ const PopUpAdd = () => {
 
     const file = e.target.files[0];
 
+    console.log("Data File : ", file);
+
     const reader = new FileReader();
 
     if (file) {
-      if (
-        !file.type.startsWith("image/png") &&
-        !file.type.startsWith("image/jpeg")
-      ) {
-        alert("Hanya file PNG, JPG atau JPEG yang diizinkan.");
-        return;
-      }
-
-      if (file.size > 10 * 1024 * 1024) {
-        alert("Ukuran berkas terlalu besar. Maksimum 10MB diizinkan.");
-        return;
-      }
 
       reader.readAsDataURL(file);
       reader.onloadend = () => {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 interface stateActivityList {
   id: number;
@@ -12,13 +13,16 @@ interface FormImageUploadProps {
   dataActivityList: stateActivityList[];
 }
 
-const FormImageUpload = ({ register, initValue, dataActivityList }: FormImageUploadProps) => {
+const FormImageUpload = ({ register, dataActivityList }: FormImageUploadProps) => {
+
+  const select = useSelector((state: any) => state.select.data.select);
+
   const [dataActivityListSelection, setDataActivityListSelection] =
-    useState(initValue);
+    useState(dataActivityList.filter((item) => item.name.toLowerCase() === select.toLowerCase())[0].id);
 
   const handleSelectionChange = (e: any) => {
     setDataActivityListSelection(e.target.value);
-  };
+  };  
 
   return (
     <div className="flex flex-col gap-0 w-full">

@@ -128,6 +128,9 @@ export default function Page({}: PageProps) {
                   </td>
                 </tr>
               ) : paginatedData.map((item, index) => {
+
+                console.log("dataImageItem", item);
+
                 return (
                   <tr
                     key={index}

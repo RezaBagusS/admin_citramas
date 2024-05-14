@@ -108,7 +108,7 @@ const PopupData = () => {
           path: data.path,
         };
         return await updateNewsData(updateDataNews);
-        
+
       default:
         return "";
     }
@@ -119,7 +119,7 @@ const PopupData = () => {
 
     console.log("Data : ", data);
     console.log("Date : ", new Date(data.date));
-    
+
     if (
       data.id_activity == 0 ||
       data.id_activityList == 0 ||
@@ -133,7 +133,7 @@ const PopupData = () => {
 
     res
       .then((res) => {
-        console.log("Res : ",res);
+        console.log("Res : ", res);
         dispatch(setPopup({ show: false }));
         dispatch(setToaster({ message: "Data has been updated", show: true }));
         reset();
@@ -293,12 +293,7 @@ const PopupData = () => {
           <>
             <FormImageUpload
               register={register}
-              initValue={
-                dataActivityList.find(
-                  (item) => item.name === dataPopup.activityList
-                )?.id || 0
-              }
-              dataActivityList={dataActivityList}
+              dataActivityList={dataActivityList ? dataActivityList : []}
             />
             <div className="flex flex-col gap-3 items-center justify-center w-full mt-2">
               {dataPopup.url_image ? (
@@ -313,7 +308,8 @@ const PopupData = () => {
                 <div className="w-full flex flex-col justify-center items-center mt-3">
                   <FiUploadCloud className="text-custPrimary size-10" />
                   <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> your image
+                    <span className="font-semibold">Click to upload</span> your
+                    image
                   </p>
                 </div>
               )}
@@ -328,7 +324,6 @@ const PopupData = () => {
             </div>
           </>
         );
-
       case "/dashboard/news":
         return (
           <>
@@ -397,7 +392,11 @@ const PopupData = () => {
                 {handletitle()}
               </span>
             </p>
-            {handleInputForm()}
+            {dataActivity.length > 0 || dataActivityList.length > 0 ? (
+              handleInputForm()
+            ) : (
+              <p className="animate-pulse text-center py-5">Loading...</p>
+            )}
           </div>
 
           {/* CONFIRM BUTTON */}
@@ -414,9 +413,7 @@ const PopupData = () => {
                 disabled={whileSubmit}
                 className="flex items-center gap-2 text-white bg-custPrimary cursor-pointer hover:bg-custPrimary/80 text-lg font-semibold px-8 sm:px-6 py-2 rounded-lg transition-all duration-150"
               >
-                {whileSubmit && (
-                  <FaSpinner className="animate-spin size-3" />
-                )}
+                {whileSubmit && <FaSpinner className="animate-spin size-3" />}
                 confirm
               </button>
             </div>

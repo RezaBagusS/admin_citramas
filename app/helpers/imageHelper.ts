@@ -65,6 +65,8 @@ export const getAllDataImage = async () => {
       }
     });
 
+    if (response.length === 0 || dataListActivity.length === 0) return [];
+
     return response.map((item) => {
       return {
         id: item.id,

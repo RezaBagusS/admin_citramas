@@ -11,7 +11,7 @@ import { getAllDataListActivity } from "@/app/helpers/listActivityHelpers";
 import SelectActivity from "@/app/components/molecules/selectActivity";
 import { useSelector } from "react-redux";
 
-interface PageProps {}
+interface PageProps { }
 
 interface stateDataImage {
   id: number;
@@ -25,7 +25,8 @@ interface ActivityList {
   name: string;
 }
 
-export default function Page({}: PageProps) {
+export default function Page({ }: PageProps) {
+  const [loading, setLoading] = useState(true);
   const [dataImage, setDataImage] = useState<stateDataImage[]>([]);
   const [filteredData, setFilteredData] = useState<stateDataImage[]>([]);
   const [dataActivityList, setDataActivityList] = useState<ActivityList[]>([]);
@@ -58,6 +59,8 @@ export default function Page({}: PageProps) {
       })
       .catch((err: any) => {
         console.log(err);
+      }).finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -73,14 +76,14 @@ export default function Page({}: PageProps) {
           return item.name_listActivity.toLowerCase().includes(select.toLowerCase());
         }
       );
-
+      
       setCurrentPage(1);
       setFilteredData(filtered);
 
     };
 
     filterData();
-  },[select, dataImage])
+  }, [select, dataImage])
 
   const paginatedData =
     filteredData.length > pageSize
@@ -109,16 +112,16 @@ export default function Page({}: PageProps) {
           </thead>
           <tbody>
             {
-              filteredData.length === 0 ? (
+              loading ? (
                 <tr className="bg-slate-100">
-                <td
-                  colSpan={4}
-                  className="py-5 px-3 text-center text-custBlack/70"
-                >
-                  Loading . . .
-                </td>
-              </tr>
-              ) : paginatedData.length === 0 ? (
+                  <td
+                    colSpan={4}
+                    className="py-5 px-3 text-center text-custBlack/70"
+                  >
+                    Loading . . .
+                  </td>
+                </tr>
+              ) : filteredData.length === 0 || paginatedData.length === 0 ? (
                 <tr className="bg-slate-100">
                   <td
                     colSpan={7}

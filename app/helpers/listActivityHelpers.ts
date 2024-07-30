@@ -12,6 +12,8 @@ export const getAllDataListActivity = async () => {
         }
     });
 
+    if (result.length === 0 || getNameActivity.length === 0) return [];
+
     const data = result.map((item) => {
         return {
             id: item.id,

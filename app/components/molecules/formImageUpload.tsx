@@ -18,9 +18,10 @@ const FormImageUpload = ({ register, dataActivityList }: FormImageUploadProps) =
   const select = useSelector((state: any) => state.select.data.select);
 
   console.log(dataActivityList.filter((item) => item.name.toLowerCase() === select.toLowerCase()));
+  let dataActivityListHandle = dataActivityList.filter((item) => item.name.toLowerCase() === select.toLowerCase()).length === 0 ? [] : dataActivityList.filter((item) => item.name.toLowerCase() === select.toLowerCase())[0].id;
 
   const [dataActivityListSelection, setDataActivityListSelection] =
-    useState(dataActivityList.filter((item) => item.name.toLowerCase() === select.toLowerCase())[0].id);
+    useState(dataActivityListHandle);
 
   const handleSelectionChange = (e: any) => {
     setDataActivityListSelection(e.target.value);
